@@ -38,20 +38,25 @@ app.config['UPLOAD_FOLDER'] = inputfolder
 
 def process_file(save_location):
     data = pd.read_csv(save_location)
-    empName = data['Employee Name'].tolist()
-    print(empName)
-    data = data.drop('Employee Name', axis=1)
+    empName = data['EmployeeName'].tolist()
+    empNameList = []
+    for name in empName:
+        lst=[]
+        lst.append(name)
+        empNameList.append(lst)
+    print(empNameList)
+    data = data.drop('EmployeeName', axis=1)
     dataset = pd.read_csv("HR_Model_Processed.csv")
     data = pd.get_dummies(data)
     data.to_csv("processed HR.csv")
     lr_from_pickle = pickle.load(open('model.pkl', 'rb'))
     with open('processed HR.csv') as file_obj:
         reader_obj = csv.reader(file_obj)
-    # lr_from_pickle.predict(data)
     res = []
     res = lr_from_pickle.predict(data)
     df = pd.read_csv("processed HR.csv")
     empId = df['EmployeeNumber'].tolist()
+    #preparing list of lists of employee IDs
     empIdList = []
     for id in empId:
         lst = []
@@ -59,18 +64,22 @@ def process_file(save_location):
         empIdList.append(lst)
     print('Employee Details: ')
     print(empIdList)
-    fields = ['Employee_Number']
-    with open('new.csv', 'w') as file:
-        writer = csv.writer(file, delimiter=' ')
-        writer.writerow(fields)
+    print('Employee Names: ')
+    print(empNameList)
+    with open('new.csv', 'w', newline='') as csvfile:
+        header = ['Employee_Number','Employee_Name','Attrition(Stay/Leave)']
+        writer = csv.DictWriter(csvfile, fieldnames=header)
+        writer.writeheader()
         print('Result')
         print(res)
         idx1 = 0
-        for i in range(len(res)):
-            if res[i] == 1:
-                writer.writerow(empIdList[idx1])
+        for item in res:
+            if item == 1:
+                writer.writerow({'Employee_Number': empIdList[idx1][0], 'Employee_Name': empNameList[idx1][0], 'Attrition(Stay/Leave)' : 'Will Leave'})
+            else:
+                writer.writerow({'Employee_Number': empIdList[idx1][0], 'Employee_Name': empNameList[idx1][0], 'Attrition(Stay/Leave)' : 'Stay'})
             idx1 = idx1 + 1
-        file.close()
+        csvfile.close()
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
