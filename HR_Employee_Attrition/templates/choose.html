@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:rgba(255,0,0,0.3);
+            text-align: center;
+            padding: 16px 32px;
+        }
+        .button {
+            border: none;
+            color: white;
+            padding: 26px 40px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 24px 30px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white; 
+            color: black; 
+            border: 5px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button2 {
+            background-color: white; 
+            color: black; 
+            border: 5px solid #008CBA;
+        }
+
+        .button2:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <br><br><br><br><br><br><br><br><br><br>
+    <h2><b>CLICK ON BELOW BUTTONS BASED ON REQUIREMENT</b></h2>
+    <form action="/select" method="POST" enctype="multipart/form-data">
+        <label for="fname"><b>Enter Employee ID: </b></label>
+        <input type="text" id="fname" name="fname" value="">
+        <input type="submit" name="" value="One Employee">
+    </form>
+    <br><br>
+    <form action="/allEmployees" method="POST" enctype="multipart/form-data">
+        <label for="fname"><b>For All Employees: </b></label>
+        <input type="submit" name="" value="All Employee">
+    </form>
+    <br><br>
+    <form action="/homepage" method="POST" enctype="multipart/form-data">
+        <input type="submit" name="" value="BACK">
+    </form>
+</body>
+</html>

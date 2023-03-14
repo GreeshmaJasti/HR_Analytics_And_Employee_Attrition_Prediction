@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         body{
-            background-color:chartreuse;
+            background-color:plum;
             text-align: center;
             align-content: center;
         }
@@ -20,11 +20,17 @@
       }
     </style>
 </head>
+<u><h1 font-color:white>Click on the link to obtain details of Employees</h1></u>
+<u><h2 font-color:white>An excel is downloaded consisting of details of Employees</h2></u>
+<h3>1. Employee_Number</h3>
+<h3>2. Employee_Name  </h3>
+<h3>3. Attrition(Stay/Left)</h3>
+<br><br><br><br><br><br>
 <center>
     <body>
         <div class="box">
             <center>
-                <a href="{{url_for('Download_file')}}">Click ME for Employee Details</a>
+                <a href="{{url_for('Download_file')}}" style="color: rgb(184, 11, 11)">Click ME for Employee Details</a>
             </center>
         </div>
     </body>

@@ -1,0 +1,19 @@
+html body{
+    overflow-x: hidden !important;
+    font-family: 'Syne',sans-serif;
+    background-color: #d80d4a;
+}
+.navbar{
+    background: #3d035f;;
+    width: 100%;
+    z-index: 1000;
+    background-size: cover;
+    font-size:1.1rem;
+}
+.accordion{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: #d80d4a;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+}
